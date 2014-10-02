@@ -1,9 +1,9 @@
-package com.itsme;
+package com.itsme.view;
 
 import android.app.Activity;
 import android.os.Bundle;
 
-
+import com.itsme.R;
 
 
 public class MainActivity extends Activity {

@@ -1,4 +1,4 @@
-package com.itsme;
+package com.itsme.view;
 
 
 import android.app.Dialog;
@@ -17,6 +17,9 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.itsme.Constants;
+import com.itsme.InstagramService;
+import com.itsme.R;
 import com.itsme.model.Data;
 import com.itsme.model.ImageSet;
 import com.itsme.model.SearchResult;
