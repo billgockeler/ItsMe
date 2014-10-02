@@ -39,6 +39,7 @@ public class MainFragment extends Fragment {
 
     private static final String IMAGE_ARRAY = "image_array";
     private static final String MAX_TAG = "max_tag";
+    private static final int LOAD_THRESHOLD = 5;
 
     @InjectView(R.id.listview)
     ListView listview;
@@ -95,8 +96,7 @@ public class MainFragment extends Fragment {
         listview.setAdapter(photoListAdapter);
         listview.setOnScrollListener(new AbsListView.OnScrollListener(){
             public void onScroll(AbsListView view, int first_visible_item, int visible_item_count, int total_item_count) {
-
-                int last_visible_item = first_visible_item + visible_item_count;
+                int last_visible_item = first_visible_item + visible_item_count + LOAD_THRESHOLD;
 
                 if((last_visible_item  == total_item_count) && !(loading)){
                     loadMore();
