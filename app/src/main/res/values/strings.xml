@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">It\'s Me</string>
+    <string name="connection_error">Can\'t load data. Check your connection.</string>
+    <string name="action_refresh">Refresh</string>
+
+</resources>

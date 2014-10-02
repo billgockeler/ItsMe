@@ -1,0 +1,4 @@
+<resources>
+    <dimen name="notification_margin">32dp</dimen>
+    <dimen name="grid_margin">1dp</dimen>
+</resources>

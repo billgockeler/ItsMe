@@ -1,0 +1,29 @@
+<resources>
+
+    <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar"></style>
+
+    <style name="NotificationToast">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/background_rounded</item>
+        <item name="android:padding">10dp</item>
+    </style>
+
+    <style name="BorderlessDialog"
+        parent="@android:style/Theme.Dialog">
+        <item
+            name="android:windowBackground">@color/transparent_black</item>
+        <item name="android:windowIsFloating">false</item>
+        <item
+            name="android:windowNoTitle">true</item>
+        <item name="android:windowAnimationStyle">@style/DialogAnimation</item>
+    </style>
+
+    <style name="DialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/zoom_in</item>
+        <item name="android:windowExitAnimation">@anim/zoom_out</item>
+    </style>
+
+</resources>
