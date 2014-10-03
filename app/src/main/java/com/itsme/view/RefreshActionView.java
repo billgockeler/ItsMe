@@ -1,8 +1,6 @@
 package com.itsme.view;
 
 import android.content.Context;
-import android.os.Handler;
-import android.os.Looper;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.animation.Animation;
@@ -14,7 +12,6 @@ import com.itsme.R;
 public class RefreshActionView extends ImageView {
 
     private Animation animation;
-    private Handler handler;
 
     public RefreshActionView(Context context) {
         this(context, null);
@@ -35,8 +32,6 @@ public class RefreshActionView extends ImageView {
 
         animation = AnimationUtils.loadAnimation(getContext(), R.anim.rotate);
         animation.setRepeatCount(Animation.INFINITE);
-
-        handler = new Handler(Looper.getMainLooper());
     }
 
     public void start() {
