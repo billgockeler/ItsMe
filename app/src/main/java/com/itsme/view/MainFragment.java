@@ -40,6 +40,7 @@ public class MainFragment extends Fragment {
     private static final String IMAGE_ARRAY = "image_array";
     private static final String MAX_TAG = "max_tag";
     private static final int LOAD_THRESHOLD = 5;
+    private static final String SEARCH_TAG = "selfie";
 
     @InjectView(R.id.listview)
     ListView listview;
@@ -50,6 +51,7 @@ public class MainFragment extends Fragment {
     ArrayList<ImageSet> imageArray;
     PhotoListAdapter photoListAdapter;
     InstagramService instagramService;
+    RefreshActionView refreshActionView;
 
     String next_max_tag_id;
     boolean loading;
@@ -123,7 +125,14 @@ public class MainFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.main, menu);
-        super.onCreateOptionsMenu(menu,inflater);
+        refreshActionView = (RefreshActionView)menu.findItem(R.id.action_refresh).getActionView();
+        refreshActionView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                refresh();
+            }
+        });
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override
@@ -139,17 +148,18 @@ public class MainFragment extends Fragment {
     private void refresh() {
         next_max_tag_id = null;
         photoListAdapter.clear();
+        refreshActionView.start();
         load();
     }
 
     private void load() {
         loading = true;
-        instagramService.searchForTag("selfie", callback);
+        instagramService.searchForTag(SEARCH_TAG, callback);
     }
 
     private void loadMore() {
         loading = true;
-        instagramService.searchForTag("selfie", next_max_tag_id, callback);
+        instagramService.searchForTag(SEARCH_TAG, next_max_tag_id, callback);
     }
 
     private void showImage(String imageUrl) {
@@ -170,7 +180,6 @@ public class MainFragment extends Fragment {
     Callback<SearchResult> callback = new Callback<SearchResult>() {
         @Override
         public void success(SearchResult searchResult, Response response){
-
             loading = false;
             connection_text.setVisibility(View.INVISIBLE);
 
@@ -200,16 +209,19 @@ public class MainFragment extends Fragment {
                             break;
                     }
                 }
-
                 photoListAdapter.notifyDataSetChanged();
             }
             else {
                 connection_text.setVisibility(View.VISIBLE);
             }
+
+            refreshActionView.stop();
+
         }
 
         @Override
         public void failure(RetrofitError error) {
+            refreshActionView.stop();
             loading = false;
             connection_text.setVisibility(View.VISIBLE);
         }
